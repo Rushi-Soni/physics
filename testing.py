@@ -70,6 +70,26 @@ class PhysicsLearningBot:
                                 "It becomes zero"
                             ],
                             "answer": 1
+                        },
+                        {
+                            "question": "What is the value of the Universal Gravitational Constant G?",
+                            "options": [
+                                "6.674 × 10⁻¹¹ N(m/kg)²",
+                                "3.14 × 10⁻⁸ N(m/kg)²",
+                                "9.81 m/s²",
+                                "1.0 × 10⁻⁶ N(m/kg)²"
+                            ],
+                            "answer": 0
+                        },
+                        {
+                            "question": "Is gravitational force always...",
+                            "options": [
+                                "Repulsive",
+                                "Attractive",
+                                "Zero",
+                                "Variable"
+                            ],
+                            "answer": 1
                         }
                     ]
                 },
@@ -121,6 +141,26 @@ class PhysicsLearningBot:
                                 "5.0 m/s²"
                             ],
                             "answer": 0
+                        },
+                        {
+                            "question": "Where is gravitational potential energy zero?",
+                            "options": [
+                                "At Earth's surface",
+                                "At the center of a planet",
+                                "At infinity",
+                                "At sea level"
+                            ],
+                            "answer": 2
+                        },
+                        {
+                            "question": "How does gravitational field strength change with altitude?",
+                            "options": [
+                                "Remains constant",
+                                "Increases linearly",
+                                "Decreases with distance",
+                                "Becomes zero"
+                            ],
+                            "answer": 2
                         }
                     ]
                 },
@@ -172,6 +212,26 @@ class PhysicsLearningBot:
                                 "Gravitational force is constant"
                             ],
                             "answer": 1
+                        },
+                        {
+                            "question": "Where is the central body located in an orbit?",
+                            "options": [
+                                "At the center of the orbit",
+                                "At one focus of the ellipse",
+                                "At the edge of the orbit",
+                                "Randomly positioned"
+                            ],
+                            "answer": 1
+                        },
+                        {
+                            "question": "What happens to a planet's speed as it gets closer to the central body?",
+                            "options": [
+                                "Remains constant",
+                                "Decreases",
+                                "Increases",
+                                "Becomes zero"
+                            ],
+                            "answer": 2
                         }
                     ]
                 },
@@ -223,6 +283,26 @@ class PhysicsLearningBot:
                                 "Shape change"
                             ],
                             "answer": 2
+                        },
+                        {
+                            "question": "How do tidal forces depend on distance?",
+                            "options": [
+                                "Linearly",
+                                "Exponentially",
+                                "With cube of distance",
+                                "Inversely"
+                            ],
+                            "answer": 2
+                        },
+                        {
+                            "question": "How many tidal bulges does Earth have?",
+                            "options": [
+                                "One",
+                                "Two",
+                                "Three",
+                                "Four"
+                            ],
+                            "answer": 1
                         }
                     ]
                 },
@@ -269,11 +349,109 @@ class PhysicsLearningBot:
                                 "Chandra"
                             ],
                             "answer": 1
+                        },
+                        {
+                            "question": "What do gravitational wave observatories measure?",
+                            "options": [
+                                "Star brightness",
+                                "Radio signals",
+                                "Tiny changes in distance",
+                                "Magnetic field strength"
+                            ],
+                            "answer": 2
+                        },
+                        {
+                            "question": "When were gravitational waves first detected?",
+                            "options": [
+                                "2010",
+                                "2012",
+                                "2015",
+                                "2018"
+                            ],
+                            "answer": 2
                         }
                     ]
                 },
+            ],
+            "comprehensive_gravitation": [
+                {
+                    "name": "Gravitational Physics Overview",
+                    "lesson": """A comprehensive summary of gravitational physics, integrating key concepts from previous topics.
+
+                    1. Fundamental Principles:
+                       - Gravity is a fundamental force of nature
+                       - Described by Newton's and Einstein's theories
+                       - Acts between all massive objects
+
+                    2. Key Theories and Observations:
+                       - Newton's Law of Universal Gravitation
+                       - Einstein's General Relativity
+                       - Gravitational waves
+                       - Orbital mechanics
+
+                    3. Practical Applications:
+                       - Space exploration
+                       - Satellite technology
+                       - Understanding cosmic phenomena
+                       - Planetary and stellar evolution
+
+                    4. Interconnected Concepts:
+                       - Field strength
+                       - Potential energy
+                       - Tidal forces
+                       - Orbital dynamics
+                    """,
+                    "summary": "Gravitational physics is a complex field studying how massive objects interact through the fundamental gravitational force, revealing the intricate mechanics of the universe.",
+                    "quiz": [
+                        {
+                            "question": "Which two major theories primarily describe gravitational interactions?",
+                            "options": [
+                                "Quantum Mechanics and Special Relativity",
+                                "Thermodynamics and Electromagnetism",
+                                "Newton's Law and Einstein's General Relativity",
+                                "Classical Mechanics and Quantum Field Theory"
+                            ],
+                            "answer": 2
+                        },
+                        {
+                            "question": "What are the practical applications of gravitational physics?",
+                            "options": [
+                                "Cooking and agriculture",
+                                "Space exploration and satellite technology",
+                                "Music production",
+                                "Fashion design"
+                            ],
+                            "answer": 1
+                        },
+                        {
+                            "question": "How many fundamental forces does gravity interact with?",
+                            "options": [
+                                "1",
+                                "2",
+                                "3",
+                                "4"
+                            ],
+                            "answer": 3
+                        },
+                        {
+                            "question": "What recent astronomical discovery confirmed Einstein's predictions?",
+                            "options": [
+                                "Dark matter",
+                                "Exoplanets",
+                                "Gravitational waves",
+                                "Black hole imaging"
+                            ],
+                            "answer": 2
+                        }
+                    ]
+                }
             ]
         }
+
+    # Rest of the class remains the same as in the original implementation
+    # (get_all_topics, get_topic_by_name, get_lesson, get_summary, get_quiz, get_challenge, get_ai_response methods)
+
+# Flask app and routes remain the same
 
     def get_all_topics(self):
         topics_list = []
