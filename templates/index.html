@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Physics Explorer Pro</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <style>
+        :root {
+            --primary-color: #3b82f6;
+            --secondary-color: #10b981;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: var(--primary-color);
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-blue-100 min-h-screen flex">
+    <!-- Main Content Area -->
+    <div class="flex-grow p-6 max-w-4xl mx-auto">
+        <header class="text-center mb-8">
+            <h1 class="text-5xl font-bold text-blue-800 mb-4">Physics Learning Universe</h1>
+            <p class="text-xl text-blue-600">Explore the Mysteries of Gravitation</p>
+        </header>
+
+        <!-- Dynamic Content Container -->
+        <div id="main-content" class="grid md:grid-cols-3 gap-6">
+            <!-- Topic Categories -->
+            <div class="bg-white shadow-lg rounded-xl p-6 custom-scrollbar overflow-y-auto">
+                <h2 class="text-2xl font-semibold mb-4 text-blue-700">Learning Paths</h2>
+                <div id="category-list"></div>
+            </div>
+
+            <!-- Topic Details -->
+            <div class="md:col-span-2 bg-white shadow-lg rounded-xl p-6">
+                <div id="welcome-message" class="text-center">
+                    <h3 class="text-3xl text-blue-700 mb-4">Welcome to Physics Explorer!</h3>
+                    <p class="text-gray-600">Select a topic to begin your learning journey</p>
+                </div>
+                <div id="lesson-content" class="hidden">
+                    <h3 id="lesson-title" class="text-3xl text-blue-700 mb-4"></h3>
+                    <div id="lesson-text" class="prose text-gray-700 mb-6"></div>
+                    <div class="flex space-x-4">
+                        <button id="start-quiz-btn" class="bg-green-500 text-white px-6 py-2 rounded-lg hover:bg-green-600 transition">
+                            Take Quiz
+                        </button>
+                        <button id="visualize-btn" class="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition">
+                            Visualize Concept
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Quiz Section -->
+                <div id="quiz-section" class="hidden mt-6">
+                    <h2 class="text-2xl font-semibold mb-4 text-blue-700">Quiz Challenge</h2>
+                    <div id="quiz-container"></div>
+                    <div id="quiz-results" class="mt-4"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- AI Assistant Side Popup -->
+    <div id="ai-assistant" class="fixed right-0 top-0 w-96 h-full bg-white shadow-2xl transform translate-x-full transition-transform duration-300 z-50">
+        <div class="h-full flex flex-col">
+            <!-- Popup Toggle Button -->
+            <button id="toggle-assistant" class="absolute -left-12 top-4 bg-blue-500 text-white p-2 rounded-l-lg">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+            </button>
+
+            <!-- Chat Header -->
+            <div class="bg-blue-600 text-white p-4 flex justify-between items-center">
+                <h2 class="text-xl font-semibold">Physics AI Assistant</h2>
+                <button id="close-assistant" class="hover:bg-blue-700 p-1 rounded">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Chat Messages -->
+            <div id="chat-messages" class="flex-grow overflow-y-auto p-4 custom-scrollbar"></div>
+
+            <!-- Chat Input -->
+            <div class="p-4 border-t">
+                <div class="flex">
+                    <input type="text" id="chat-input" placeholder="Ask a physics question..." 
+                           class="flex-grow border rounded-l p-2">
+                    <button id="send-chat" class="bg-blue-500 text-white px-4 py-2 rounded-r">Send</button>
+                </div>
+                <div id="chat-suggestions" class="mt-2 flex flex-wrap gap-2"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Utility Function
+        function createElement(tag, classes = '', text = '') {
+            const el = document.createElement(tag);
+            el.className = classes;
+            if (text) el.textContent = text;
+            return el;
+        }
+
+        // AI Assistant Popup Functionality
+        const aiAssistant = document.getElementById('ai-assistant');
+        const toggleAssistantBtn = document.getElementById('toggle-assistant');
+        const closeAssistantBtn = document.getElementById('close-assistant');
+
+        toggleAssistantBtn.addEventListener('click', () => {
+            aiAssistant.classList.toggle('translate-x-full');
+        });
+
+        closeAssistantBtn.addEventListener('click', () => {
+            aiAssistant.classList.add('translate-x-full');
+        });
+
+        // Topic and Category Management
+        async function loadCategories() {
+            const categoryList = document.getElementById('category-list');
+            const response = await fetch('/get-topics');
+            const topics = await response.json();
+            
+            const categoriesMap = {};
+            topics.forEach(topic => {
+                if (!categoriesMap[topic.category]) {
+                    categoriesMap[topic.category] = [];
+                }
+                categoriesMap[topic.category].push(topic);
+            });
+
+            Object.entries(categoriesMap).forEach(([category, categoryTopics]) => {
+                const categoryContainer = createElement('div', 'mb-4');
+                const categoryTitle = createElement('h3', 'font-bold text-lg text-blue-600 mb-2', 
+                    category.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase()));
+                categoryContainer.appendChild(categoryTitle);
+
+                const topicsContainer = createElement('div', 'space-y-2');
+                categoryTopics.forEach(topic => {
+                    const topicBtn = createElement('button', 
+                        'w-full text-left px-3 py-2 bg-blue-100 text-blue-800 rounded hover:bg-blue-200 transition', 
+                        topic.name);
+                    topicBtn.onclick = () => loadTopic(topic.name);
+                    topicsContainer.appendChild(topicBtn);
+                });
+
+                categoryContainer.appendChild(topicsContainer);
+                categoryList.appendChild(categoryContainer);
+            });
+        }
+
+        async function loadTopic(topicName) {
+            const response = await fetch(`/get-topic/${topicName}`);
+            const topic = await response.json();
+
+            document.getElementById('welcome-message').classList.add('hidden');
+            const lessonContent = document.getElementById('lesson-content');
+            lessonContent.classList.remove('hidden');
+
+            document.getElementById('lesson-title').textContent = topic.name;
+            document.getElementById('lesson-text').innerHTML = topic.lesson.replace(/\n/g, '<br>');
+
+            document.getElementById('start-quiz-btn').onclick = () => loadQuiz(topic.quiz);
+            document.getElementById('visualize-btn').onclick = () => visualizeConcept(topicName);
+        }
+
+        function visualizeConcept(topicName) {
+            // Create a simple visualization or modal with concept details
+            const visualizationModal = createElement('div', 
+                'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50');
+            
+            const modalContent = createElement('div', 
+                'bg-white p-8 rounded-lg max-w-2xl w-full');
+            
+            modalContent.innerHTML = `
+                <h2 class="text-2xl font-bold mb-4">${topicName} Visualization</h2>
+                <p>Interactive visualization coming soon!</p>
+                <button class="mt-4 bg-blue-500 text-white px-4 py-2 rounded">Close</button>
+            `;
+
+            modalContent.querySelector('button').onclick = () => {
+                document.body.removeChild(visualizationModal);
+            };
+
+            visualizationModal.appendChild(modalContent);
+            document.body.appendChild(visualizationModal);
+        }
+
+        function loadQuiz(quizQuestions) {
+            const quizSection = document.getElementById('quiz-section');
+            const quizContainer = document.getElementById('quiz-container');
+            quizContainer.innerHTML = '';
+            quizSection.classList.remove('hidden');
+
+            quizQuestions.forEach((question, index) => {
+                const questionCard = createElement('div', 'mb-6 p-4 bg-blue-50 rounded');
+                const questionText = createElement('p', 'font-semibold mb-3', `${index + 1}. ${question.question}`);
+                questionCard.appendChild(questionText);
+
+                question.options.forEach((option, optionIndex) => {
+                    const optionLabel = createElement('label', 'block mb-2 hover:bg-blue-100 p-2 rounded');
+                    const optionInput = createElement('input', 'mr-2');
+                    optionInput.type = 'radio';
+                    optionInput.name = `question-${index}`;
+                    optionInput.value = optionIndex;
+
+                    optionLabel.appendChild(optionInput);
+                    optionLabel.appendChild(document.createTextNode(option));
+                    questionCard.appendChild(optionLabel);
+                });
+
+                quizContainer.appendChild(questionCard);
+            });
+
+            const submitButton = createElement('button', 'bg-green-500 text-white px-6 py-2 rounded mt-4', 'Submit Quiz');
+            submitButton.onclick = submitQuiz;
+            quizContainer.appendChild(submitButton);
+        }
+
+        async function submitQuiz() {
+            const answers = Array.from(document.querySelectorAll('input[type="radio"]:checked'))
+                .map(el => parseInt(el.value));
+            
+            const response = await fetch('/check-answer', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({ answers })
+            });
+
+            const result = await response.json();
+            const quizResults = document.getElementById('quiz-results');
+            quizResults.innerHTML = `
+                <div class="bg-blue-100 p-4 rounded">
+                    <h3 class="text-xl font-bold mb-2">Quiz Results</h3>
+                    <p>You scored ${result.correctCount} out of ${result.totalCount}</p>
+                    <p class="mt-2">${
+                        result.correctCount === result.totalCount 
+                        ? '🎉 Perfect Score! Great job!' 
+                        : 'Keep learning and you\'ll improve!'
+                    }</p>
+                </div>
+            `;
+        }
+
+        // Chat Functionality
+        async function sendChatMessage() {
+            const chatInput = document.getElementById('chat-input');
+            const chatMessages = document.getElementById('chat-messages');
+            const message = chatInput.value.trim();
+
+            if (!message) return;
+
+            const userMessage = createElement('div', 'text-blue-700 mb-2 text-right', `You: ${message}`);
+            chatMessages.appendChild(userMessage);
+
+            const response = await fetch('/chat', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({ message })
+            });
+
+            const data = await response.json();
+            const botMessage = createElement('div', 'text-green-700 mb-2', `Bot: ${data.response}`);
+            chatMessages.appendChild(botMessage);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+            chatInput.value = '';
+
+            // Update suggestions
+            const suggestions = document.getElementById('chat-suggestions');
+            suggestions.innerHTML = '';
+            data.suggestions.forEach(suggestion => {
+                const suggestionChip = createElement('button', 'bg-gray-200 px-2 py-1 rounded text-sm hover:bg-gray-300', suggestion);
+                suggestionChip.onclick = () => {
+                    chatInput.value = suggestion;
+                    sendChatMessage();
+                };
+                suggestions.appendChild(suggestionChip);
+            });
+        }
+
+        // Event Listeners
+        document.getElementById('send-chat').addEventListener('click', sendChatMessage);
+        document.getElementById('chat-input').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') sendChatMessage();
+        });
+
+        // Initialize
+        loadCategories();
+    </script>
+</body>
+</html>
