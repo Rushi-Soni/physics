@@ -1,97 +1,457 @@
+import os
 from flask import Flask, render_template, jsonify, request
 import random
 import math
+import TurboTalk_Custom
 
-class QuantumPhysicsExplorer:
+class PhysicsLearningBot:
     def __init__(self, bot_name):
         self.bot_name = bot_name
         self.current_topic = None
-        self.lesson = None
+        self.lesson = None 
         self.summary = None
-        self.quiz = None
-
+        self.challenge = None
+        self.quiz = []
+        
+        # Initialize AI chatbot
+        self.chatbot = TurboTalk_Custom.turbo_talk_instance(
+            company_name="Rango Productions",
+            bot_name="Grav Bot", 
+            behaviour="Innovative and creative physics teacher specializing in gravitation"
+        )
+        
         self.topics = {
-            "quantum_mechanics_fundamentals": [
+            "basic_gravitation": [
                 {
-                    "name": "Quantum Mechanics Fundamentals",
-                    "lesson": """Quantum mechanics is the fundamental theory that describes nature at the atomic and subatomic scales.
+                    "name": "Newton's Law of Universal Gravitation",
+                    "lesson": """Newton's Law of Universal Gravitation is a fundamental principle that describes the gravitational force between all masses in the universe.
 
                     Key Concepts:
-                    1. Wave-Particle Duality:
-                       - Matter and light exhibit both wave and particle properties
-                       - De Broglie wavelength: λ = h/p
-                       - Double-slit experiment demonstration
+                    1. The Universal Gravitational Constant (G):
+                       - G = 6.674 × 10⁻¹¹ N(m/kg)²
+                       - This constant is the same throughout the universe
+                       - Determines the strength of gravitational force
 
-                    2. Uncertainty Principle:
-                       - Heisenberg's principle
-                       - ΔxΔp ≥ ħ/2
-                       - Position-momentum uncertainty
-                       
-                    3. Quantum States:
-                       - Wave functions
-                       - Superposition principle
-                       - Probability interpretation
+                    2. Key Equation:
+                       F = G(m₁m₂/r²)
+                       where:
+                       - F is the gravitational force
+                       - m₁ and m₂ are the masses of the objects
+                       - r is the distance between their centers
 
-                    Applications:
-                    - Quantum computing
-                    - Quantum tunneling
-                    - Atomic spectroscopy
+                    3. Important Facts:
+                       - Force decreases with square of distance
+                       - Force is always attractive
+                       - Applies to all objects with mass
+
+                    Real-world Applications:
+                    - Planetary orbits
+                    - Satellite motion
+                    - Tidal forces
                     """,
-                    "summary": "Introduction to the basic principles of quantum mechanics and their implications.",
+                    "summary": "Newton's Law explains how objects with mass attract each other, with strength depending on their masses and distance.",
                     "quiz": [
                         {
-                            "question": "What is wave-particle duality?",
+                            "question": "What does Newton's Law of Universal Gravitation describe?",
                             "options": [
-                                "Only waves exist",
-                                "Only particles exist",
-                                "Matter exhibits both wave and particle properties",
-                                "Light only shows wave properties"
-                            ],
-                            "answer": 2
-                        },
-                        # Add more quiz questions
-                    ]
-                }
-            ],
-            "quantum_entanglement": [
-                {
-                    "name": "Quantum Entanglement",
-                    "lesson": """Quantum entanglement is a phenomenon where particles become correlated in such a way that the quantum state of each particle cannot be described independently.
-
-                    Key Concepts:
-                    1. Einstein-Podolsky-Rosen Paradox:
-                       - Spooky action at a distance
-                       - Non-locality in quantum mechanics
-                       - Bell's inequalities
-
-                    2. Applications:
-                       - Quantum cryptography
-                       - Quantum teleportation
-                       - Quantum computing algorithms
-
-                    3. Experimental Verification:
-                       - Bell test experiments
-                       - Quantum communication
-                       - Entanglement swapping
-                    """,
-                    "summary": "Understanding quantum entanglement and its applications in modern physics.",
-                    "quiz": [
-                        {
-                            "question": "What is quantum entanglement?",
-                            "options": [
-                                "Classical correlation between particles",
-                                "Quantum correlation where states cannot be described independently",
-                                "Particles moving at the same speed",
-                                "Particles with the same charge"
+                                "The motion of planets",
+                                "The gravitational force between two masses",
+                                "The speed of light",
+                                "The shape of the Earth"
                             ],
                             "answer": 1
                         },
-                        # Add more quiz questions
+                        {
+                            "question": "What happens to gravitational force as distance increases?",
+                            "options": [
+                                "It increases",
+                                "It decreases",
+                                "It remains constant",
+                                "It becomes zero"
+                            ],
+                            "answer": 1
+                        },
+                        {
+                            "question": "What is the value of the Universal Gravitational Constant G?",
+                            "options": [
+                                "6.674 × 10⁻¹¹ N(m/kg)²",
+                                "3.14 × 10⁻⁸ N(m/kg)²",
+                                "9.81 m/s²",
+                                "1.0 × 10⁻⁶ N(m/kg)²"
+                            ],
+                            "answer": 0
+                        },
+                        {
+                            "question": "Is gravitational force always...",
+                            "options": [
+                                "Repulsive",
+                                "Attractive",
+                                "Zero",
+                                "Variable"
+                            ],
+                            "answer": 1
+                        }
+                    ]
+                },
+            ],
+            "gravitational_fields": [
+                {
+                    "name": "Gravitational Field Strength",
+                    "lesson": """Gravitational field strength (g) represents the force per unit mass at any point in a gravitational field.
+
+                    Key Concepts:
+                    1. Field Strength:
+                       - g = F/m = GM/r²
+                       - Measured in N/kg or m/s²
+                       - Varies with altitude
+
+                    2. Gravitational Potential Energy:
+                       - GPE = mgh (near Earth's surface)
+                       - GPE = -GMm/r (general form)
+                       - Zero at infinity
+
+                    3. Important Facts:
+                       - g = 9.81 m/s² at Earth's surface
+                       - Field follows inverse square law
+                       - Field lines point toward mass center
+
+                    Applications:
+                    - Space mission planning
+                    - Satellite positioning
+                    - Weight variations with altitude
+                    """,
+                    "summary": "Gravitational field strength measures the force experienced by a mass in a gravitational field, affected by distance from the mass causing the field.",
+                    "quiz": [
+                        {
+                            "question": "What is the formula for gravitational field strength?",
+                            "options": [
+                                "F = ma",
+                                "E = mc²",
+                                "g = F/m = GM/r²",
+                                "v = d/t"
+                            ],
+                            "answer": 2
+                        },
+                        {
+                            "question": "What is the value of g at Earth's surface?",
+                            "options": [
+                                "9.81 m/s²",
+                                "10 m/s²",
+                                "8.67 m/s²",
+                                "5.0 m/s²"
+                            ],
+                            "answer": 0
+                        },
+                        {
+                            "question": "Where is gravitational potential energy zero?",
+                            "options": [
+                                "At Earth's surface",
+                                "At the center of a planet",
+                                "At infinity",
+                                "At sea level"
+                            ],
+                            "answer": 2
+                        },
+                        {
+                            "question": "How does gravitational field strength change with altitude?",
+                            "options": [
+                                "Remains constant",
+                                "Increases linearly",
+                                "Decreases with distance",
+                                "Becomes zero"
+                            ],
+                            "answer": 2
+                        }
+                    ]
+                },
+            ],
+            "orbital_mechanics": [
+                {
+                    "name": "Kepler's Laws of Planetary Motion",
+                    "lesson": """Kepler's Laws describe the motion of planets and satellites in orbit around a central body.
+
+                    Key Laws:
+                    1. First Law - Orbital Shape:
+                       - Orbits are elliptical
+                       - Central body at one focus
+                       - Special case: circular orbits
+
+                    2. Second Law - Equal Areas:
+                       - Line joining planet to Sun sweeps equal areas in equal times
+                       - Conservation of angular momentum
+                       - Planets move faster when closer
+
+                    3. Third Law - Orbital Periods:
+                       - T² ∝ r³
+                       - T² = (4π²/GM)r³
+                       - Applies to all orbiting bodies
+
+                    Applications:
+                    - Satellite deployment
+                    - Interplanetary missions
+                    - Space station orbits
+                    """,
+                    "summary": "Kepler's laws describe how planets move in elliptical orbits, with varying speeds based on their distance from the Sun.",
+                    "quiz": [
+                        {
+                            "question": "What shape are planetary orbits according to Kepler's First Law?",
+                            "options": [
+                                "Circular",
+                                "Elliptical",
+                                "Parabolic",
+                                "Hyperbolic"
+                            ],
+                            "answer": 1
+                        },
+                        {
+                            "question": "What does Kepler's Second Law state?",
+                            "options": [
+                                "Orbits are circular",
+                                "Equal area in equal time",
+                                "T² ∝ r³",
+                                "Gravitational force is constant"
+                            ],
+                            "answer": 1
+                        },
+                        {
+                            "question": "Where is the central body located in an orbit?",
+                            "options": [
+                                "At the center of the orbit",
+                                "At one focus of the ellipse",
+                                "At the edge of the orbit",
+                                "Randomly positioned"
+                            ],
+                            "answer": 1
+                        },
+                        {
+                            "question": "What happens to a planet's speed as it gets closer to the central body?",
+                            "options": [
+                                "Remains constant",
+                                "Decreases",
+                                "Increases",
+                                "Becomes zero"
+                            ],
+                            "answer": 2
+                        }
+                    ]
+                },
+            ],
+            "gravitational_effects": [
+                {
+                    "name": "Tidal Forces and Effects",
+                    "lesson": """Tidal forces arise from differential gravitational forces across an extended body.
+
+                    Key Concepts:
+                    1. Tidal Bulge:
+                       - Caused by gravity gradient
+                       - Two bulges: facing and opposite
+                       - Earth-Moon interaction
+
+                    2. Tidal Effects:
+                       - Ocean tides
+                       - Tidal locking
+                       - Orbital energy transfer
+
+                    3. Important Facts:
+                       - Varies with cube of distance
+                       - Affects solid bodies too
+                       - Causes tidal heating
+
+                    Applications:
+                    - Ocean navigation
+                    - Moon's rotation
+                    - Planetary geology
+                    """,
+                    "summary": "Tidal forces are caused by the varying gravitational pull from celestial bodies, leading to phenomena like ocean tides.",
+                    "quiz": [
+                        {
+                            "question": "What causes tidal bulges on Earth?",
+                            "options": [
+                                "Wind",
+                                "Moon's gravitational pull",
+                                "Sun's radiation",
+                                "Earth's rotation"
+                            ],
+                            "answer": 1
+                        },
+                        {
+                            "question": "How do tidal forces affect solid bodies?",
+                            "options": [
+                                "No effect",
+                                "Cracking",
+                                "Tidal heating",
+                                "Shape change"
+                            ],
+                            "answer": 2
+                        },
+                        {
+                            "question": "How do tidal forces depend on distance?",
+                            "options": [
+                                "Linearly",
+                                "Exponentially",
+                                "With cube of distance",
+                                "Inversely"
+                            ],
+                            "answer": 2
+                        },
+                        {
+                            "question": "How many tidal bulges does Earth have?",
+                            "options": [
+                                "One",
+                                "Two",
+                                "Three",
+                                "Four"
+                            ],
+                            "answer": 1
+                        }
+                    ]
+                },
+            ],
+            "advanced_gravitation": [
+                {
+                    "name": "Gravitational Waves",
+                    "lesson": """Gravitational waves are ripples in spacetime caused by some of the most violent and energetic processes in the Universe.
+
+                    Key Concepts:
+                    1. Generation:
+                       - Produced by accelerating masses
+                       - Notable sources: merging black holes, neutron stars
+
+                    2. Detection:
+                       - LIGO and Virgo observatories
+                       - Measure tiny changes in distance
+
+                    3. Importance:
+                       - New way to observe the universe
+                       - Provides information about black hole mergers
+
+                    Real-world Example:
+                    - First detected in 2015 by LIGO, confirming Einstein's prediction
+                    """,
+                    "summary": "Gravitational waves are generated by massive objects moving in space, detectable by observatories like LIGO, revealing information about cosmic events.",
+                    "quiz": [
+                        {
+                            "question": "What causes gravitational waves?",
+                            "options": [
+                                "Static objects",
+                                "Accelerating masses",
+                                "Light from stars",
+                                "Magnetic fields"
+                            ],
+                            "answer": 1
+                        },
+                        {
+                            "question": "Which observatory was the first to detect gravitational waves?",
+                            "options": [
+                                "Hubble",
+                                "LIGO",
+                                "James Webb",
+                                "Chandra"
+                            ],
+                            "answer": 1
+                        },
+                        {
+                            "question": "What do gravitational wave observatories measure?",
+                            "options": [
+                                "Star brightness",
+                                "Radio signals",
+                                "Tiny changes in distance",
+                                "Magnetic field strength"
+                            ],
+                            "answer": 2
+                        },
+                        {
+                            "question": "When were gravitational waves first detected?",
+                            "options": [
+                                "2010",
+                                "2012",
+                                "2015",
+                                "2018"
+                            ],
+                            "answer": 2
+                        }
+                    ]
+                },
+            ],
+            "comprehensive_gravitation": [
+                {
+                    "name": "Gravitational Physics Overview",
+                    "lesson": """A comprehensive summary of gravitational physics, integrating key concepts from previous topics.
+
+                    1. Fundamental Principles:
+                       - Gravity is a fundamental force of nature
+                       - Described by Newton's and Einstein's theories
+                       - Acts between all massive objects
+
+                    2. Key Theories and Observations:
+                       - Newton's Law of Universal Gravitation
+                       - Einstein's General Relativity
+                       - Gravitational waves
+                       - Orbital mechanics
+
+                    3. Practical Applications:
+                       - Space exploration
+                       - Satellite technology
+                       - Understanding cosmic phenomena
+                       - Planetary and stellar evolution
+
+                    4. Interconnected Concepts:
+                       - Field strength
+                       - Potential energy
+                       - Tidal forces
+                       - Orbital dynamics
+                    """,
+                    "summary": "Gravitational physics is a complex field studying how massive objects interact through the fundamental gravitational force, revealing the intricate mechanics of the universe.",
+                    "quiz": [
+                        {
+                            "question": "Which two major theories primarily describe gravitational interactions?",
+                            "options": [
+                                "Quantum Mechanics and Special Relativity",
+                                "Thermodynamics and Electromagnetism",
+                                "Newton's Law and Einstein's General Relativity",
+                                "Classical Mechanics and Quantum Field Theory"
+                            ],
+                            "answer": 2
+                        },
+                        {
+                            "question": "What are the practical applications of gravitational physics?",
+                            "options": [
+                                "Cooking and agriculture",
+                                "Space exploration and satellite technology",
+                                "Music production",
+                                "Fashion design"
+                            ],
+                            "answer": 1
+                        },
+                        {
+                            "question": "How many fundamental forces does gravity interact with?",
+                            "options": [
+                                "1",
+                                "2",
+                                "3",
+                                "4"
+                            ],
+                            "answer": 3
+                        },
+                        {
+                            "question": "What recent astronomical discovery confirmed Einstein's predictions?",
+                            "options": [
+                                "Dark matter",
+                                "Exoplanets",
+                                "Gravitational waves",
+                                "Black hole imaging"
+                            ],
+                            "answer": 2
+                        }
                     ]
                 }
             ]
-            # Add more quantum physics topics
         }
+
+    # Rest of the class remains the same as in the original implementation
+    # (get_all_topics, get_topic_by_name, get_lesson, get_summary, get_quiz, get_challenge, get_ai_response methods)
+
+# Flask app and routes remain the same
 
     def get_all_topics(self):
         topics_list = []
@@ -107,62 +467,99 @@ class QuantumPhysicsExplorer:
         for category, topics in self.topics.items():
             for topic in topics:
                 if topic["name"] == topic_name:
-                    self.current_topic = topic
+                    self.current_topic = topic["name"]
+                    self.lesson = topic["lesson"]
+                    self.summary = topic["summary"]
+                    self.challenge = topic.get("challenge", None)
+                    self.quiz = topic.get("quiz", [])
                     return topic
         return None
 
-    def get_learning_progress(self):
-        # Implement learning progress tracking
-        completed = 3  # Example value
-        total = 7      # Example value
-        return {"completed": completed, "total": total}
+    def get_lesson(self):
+        return self.lesson
+
+    def get_summary(self):
+        return self.summary
+
+    def get_quiz(self):
+        return self.quiz
+
+    def get_challenge(self):
+        return self.challenge
+        
+    def get_ai_response(self, user_message):
+        self.chatbot.set_user_input(user_message)
+        self.chatbot.give_response()
+        return self.chatbot.get_response()
 
 app = Flask(__name__)
-quantum_explorer = QuantumPhysicsExplorer("QuantumAI")
+physics_bot = PhysicsLearningBot("PhysicsAI")
 
 @app.route('/')
 def index():
     return render_template('index.html')
 
-@app.route('/api/topics', methods=['GET'])
+@app.route('/get-topics', methods=['GET'])
 def get_topics():
-    return jsonify(quantum_explorer.get_all_topics())
+    return jsonify(physics_bot.get_all_topics())
 
-@app.route('/api/topic/<topic_name>', methods=['GET'])
+@app.route('/get-topic/<topic_name>', methods=['GET'])
 def get_topic(topic_name):
-    topic = quantum_explorer.get_topic_by_name(topic_name)
+    topic = physics_bot.get_topic_by_name(topic_name)
     if topic:
         return jsonify(topic)
     return jsonify({"error": "Topic not found"}), 404
 
-@app.route('/api/progress', methods=['GET'])
-def get_progress():
-    return jsonify(quantum_explorer.get_learning_progress())
-
-@app.route('/api/visualize/<topic_name>', methods=['GET'])
-def get_visualization(topic_name):
-    # Implement visualization data generation
-    return jsonify({
-        "type": "quantum_visualization",
-        "data": {
-            "type": "wave_function",
-            "parameters": {
-                "amplitude": 1.0,
-                "frequency": 0.5,
-                "phase": 0.0
-            }
-        }
-    })
-
-@app.route('/api/quiz/submit', methods=['POST'])
-def submit_quiz():
+@app.route('/chat', methods=['POST'])
+def chat():
     data = request.get_json()
-    # Implement quiz submission and scoring
+    user_message = data.get("message", "")
+    
+    try:
+        response = physics_bot.get_ai_response(user_message)
+        
+        suggestions = [
+            "Can you explain this in simpler terms?",
+            "Show me a practical example",
+            "How does this relate to real life?",
+            "What are the key equations involved?"
+        ]
+        
+        return jsonify({
+            "response": response,
+            "suggestions": suggestions
+        })
+    except Exception as e:
+        return jsonify({
+            "error": str(e),
+            "response": "I apologize, but I'm having trouble processing your request. Could you please rephrase your question?",
+            "suggestions": ["Try asking in a different way", "Ask about a specific concept", "Request a simpler explanation"]
+        })
+
+@app.route('/check-answer', methods=['POST'])
+def check_answer():
+    data = request.get_json()
+    user_answers = data.get("answers", [])
+    
+    if physics_bot.current_topic is None:
+        return jsonify({"error": "No topic loaded"}), 400
+
+    quiz = physics_bot.get_quiz()
+    
+    if not quiz:
+        return jsonify({"error": "No quiz available for this topic"}), 400
+
+    correct_count = 0
+    total_count = len(quiz)
+    
+    for index, user_answer in enumerate(user_answers):
+        if index < total_count and user_answer == quiz[index]['answer']:
+            correct_count += 1
+
     return jsonify({
-        "score": 85,
-        "feedback": "Great work! You've mastered the basics of quantum mechanics.",
-        "nextTopic": "Quantum Entanglement"
+        "correctCount": correct_count,
+        "totalCount": total_count
     })
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False)
