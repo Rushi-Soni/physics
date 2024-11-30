@@ -20,53 +20,34 @@ class PhysicsLearningBot:
             behaviour="Innovative and creative physics teacher specializing in gravitation"
         )
         
-        self.topics = { 
+        content = {
     "motion": [
         {
             "name": "Describing Motion",
-            "lesson": """Motion is defined as the change in position of an object with respect to time. It can be described in terms of displacement, velocity, and acceleration. The study of motion is known as kinematics, and it helps us understand how objects move in space. 
-
+            "lesson": """Motion is the change in position of an object over time. It is measured in terms of displacement, distance, velocity, and speed.
+            
             Key Concepts:
-            1. **Types of Motion**:
-               - **Translatory Motion**: Movement along a straight or curved path, such as a car moving on a road.
-               - **Rotational Motion**: Movement around an axis, such as the Earth's rotation.
-               - **Oscillatory Motion**: Repetitive back-and-forth motion, like a pendulum.
-
-            2. **Reference Frame**:
-               - A reference frame is essential for describing motion. It provides a point from which measurements of position, velocity, and acceleration can be made.
-
-            3. **Scalars and Vectors**:
-               - **Distance**: The total path traveled, a scalar quantity.
-               - **Displacement**: The shortest distance between the starting and ending point, with direction, a vector quantity.
-
-            4. **Relative Motion**:
-               - The motion of an object depends on the observer’s reference frame. Different frames of reference can observe different velocities for the same object.
-
+            1. **Reference Frames**:
+               - A reference frame is a coordinate system used to measure the position and motion of an object.
+            
+            2. **Types of Motion**:
+               - Linear motion, circular motion, and oscillatory motion are the main types.
+            
             Real-World Application:
-            - Motion of planets around the Sun and the movement of vehicles in traffic.
+            - Cars moving on a road follow a linear motion relative to the road.
 
             Advanced Concept:
-            - Analyzing non-uniform motion through calculus allows us to study the relationship between position and velocity over time.
+            - The relative motion of an object can be described in different reference frames, such as a moving car or a stationary observer.
             """,
-            "summary": """Motion is a change in position over time. It can be described as translatory, rotational, or oscillatory motion and is studied in relation to reference frames, distance, and displacement.""",
+            "summary": "Motion describes the change in position of an object over time, relative to a reference frame.",
             "quiz": [
                 {
-                    "question": "Which type of motion is an example of movement around an axis?",
+                    "question": "What is motion?",
                     "options": [
-                        "Translatory motion",
-                        "Rotational motion",
-                        "Oscillatory motion",
-                        "Linear motion"
-                    ],
-                    "answer": 1
-                },
-                {
-                    "question": "What is the key difference between distance and displacement?",
-                    "options": [
-                        "Distance is a scalar, and displacement is a vector.",
-                        "Displacement measures total path length, distance considers direction.",
-                        "Distance can be negative, displacement cannot.",
-                        "Displacement is the total distance traveled along the path."
+                        "The change in position of an object.",
+                        "The speed of an object.",
+                        "The force applied to an object.",
+                        "The mass of an object."
                     ],
                     "answer": 0
                 }
@@ -74,251 +55,312 @@ class PhysicsLearningBot:
         },
         {
             "name": "Motion Along a Straight Line",
-            "lesson": """This topic covers the motion of objects moving along a straight line, either with constant or changing velocity.
-
+            "lesson": """Motion along a straight line refers to the movement of objects in one-dimensional space. In this motion, velocity can either be constant or variable.
+            
             Key Concepts:
             1. **Uniform Motion**:
-               - An object moves with constant velocity, covering equal distances in equal intervals of time.
+               - When an object moves with a constant velocity along a straight line, its motion is uniform.
 
             2. **Non-Uniform Motion**:
-               - An object’s velocity is changing. This can involve acceleration or deceleration, such as a car speeding up or slowing down.
-
-            3. **Speed and Velocity**:
-               - **Speed**: The total distance covered divided by the total time taken. It is a scalar quantity.
-               - **Velocity**: The displacement divided by the total time taken. It is a vector quantity and includes both magnitude and direction.
-
-            4. **Acceleration**:
-               - Acceleration occurs when there is a change in velocity over time, either an increase (acceleration) or a decrease (deceleration) in speed.
+               - When the velocity of an object changes over time, it is in non-uniform motion.
 
             Real-World Application:
-            - Vehicles moving along straight roads, with varying speeds, can be analyzed using speed, velocity, and acceleration.
+            - A car moving at a constant speed along a highway represents uniform motion.
 
             Advanced Concept:
-            - Non-uniform motion often requires calculus to compute displacement and velocity when acceleration is not constant.
+            - Non-uniform motion is characterized by acceleration or deceleration, changing the object's velocity.
             """,
-            "summary": """Motion along a straight line can either be uniform (constant velocity) or non-uniform (changing velocity). Concepts such as speed, velocity, and acceleration are central to describing this motion.""",
+            "summary": "Objects moving along a straight line can have uniform or non-uniform motion, characterized by constant or changing velocity.",
+            "quiz": [
+                {
+                    "question": "Which of the following represents uniform motion?",
+                    "options": [
+                        "A car speeding up on a highway.",
+                        "A ball dropped from a height.",
+                        "A car moving at constant speed on a highway.",
+                        "A person running faster each minute."
+                    ],
+                    "answer": 2
+                }
+            ]
+        },
+        {
+            "name": "Uniform Motion and Non-Uniform Motion",
+            "lesson": """In uniform motion, the velocity remains constant, while in non-uniform motion, velocity changes with time. 
+            
+            Key Concepts:
+            1. **Constant Velocity**:
+               - When an object moves at a constant speed in a straight line, its velocity does not change.
+
+            2. **Changing Velocity**:
+               - If an object’s velocity changes over time, the motion is non-uniform. This change can be due to acceleration or deceleration.
+
+            Real-World Application:
+            - A speeding car or a car coming to a stop exemplifies non-uniform motion.
+
+            Advanced Concept:
+            - Non-uniform motion can be described using acceleration: \( v = u + at \), where \( v \) is final velocity, \( u \) is initial velocity, \( a \) is acceleration, and \( t \) is time.
+            """,
+            "summary": "Uniform motion has constant velocity, while non-uniform motion has varying velocity with acceleration or deceleration.",
             "quiz": [
                 {
                     "question": "Which of the following is an example of non-uniform motion?",
                     "options": [
-                        "A car moving at a constant speed",
-                        "A car speeding up",
-                        "A rock falling freely",
-                        "A plane cruising at constant altitude"
+                        "A car moving at constant speed.",
+                        "A car slowing down after reaching a traffic light.",
+                        "A ball rolling on a flat surface.",
+                        "A clock's second hand."
                     ],
                     "answer": 1
                 }
             ]
         },
         {
-            "name": "Uniform Motion and Non-Uniform Motion",
-            "lesson": """Motion is categorized into uniform and non-uniform types, based on the behavior of velocity.
-
+            "name": "Measuring the Rate of Motion",
+            "lesson": """Speed and velocity are used to measure the rate of motion. Speed is a scalar quantity, while velocity is a vector quantity.
+            
             Key Concepts:
-            1. **Uniform Motion**:
-               - The object’s velocity remains constant throughout its motion.
-
-            2. **Non-Uniform Motion**:
-               - The object’s velocity changes over time. It may involve varying acceleration or deceleration.
-
-            3. **Graphical Representation**:
-               - In uniform motion, the distance-time graph is a straight line, indicating constant speed.
-               - In non-uniform motion, the graph is a curve, indicating changing velocity.
+            1. **Speed**:
+               - Speed is the distance traveled per unit time. It is measured in meters per second (m/s).
+            
+            2. **Velocity**:
+               - Velocity is the displacement per unit time and includes both magnitude and direction.
 
             Real-World Application:
-            - Uniform motion is seen in a car moving at a steady pace, while non-uniform motion is common when a vehicle starts and stops.
+            - When traveling by car, speed is the rate at which you cover distance, while velocity considers your direction of travel.
 
             Advanced Concept:
-            - The use of derivatives and integrals can describe the changes in velocity and position in non-uniform motion.
+            - Instantaneous speed is the speed of an object at a particular moment in time, and can be found from the slope of a distance-time graph.
             """,
-            "summary": """Uniform motion occurs at constant velocity, while non-uniform motion involves changing velocity. Graphs help to visualize these types of motion and calculate various quantities.""",
+            "summary": "Speed measures how fast an object moves, while velocity includes both speed and direction.",
             "quiz": [
                 {
-                    "question": "What does a distance-time graph for uniform motion look like?",
+                    "question": "Which of the following is a vector quantity?",
                     "options": [
-                        "A straight, sloped line",
-                        "A curved line",
-                        "A straight horizontal line",
-                        "A zigzag line"
+                        "Speed",
+                        "Distance",
+                        "Time",
+                        "Velocity"
+                    ],
+                    "answer": 3
+                }
+            ]
+        },
+        {
+            "name": "Graphical Representation of Motion",
+            "lesson": """Graphs are used to visually represent motion. The most common graphs are distance-time and velocity-time graphs.
+
+            Key Concepts:
+            1. **Distance-Time Graph**:
+               - A distance-time graph shows how the distance covered by an object changes over time. The slope represents speed.
+            
+            2. **Velocity-Time Graph**:
+               - A velocity-time graph shows how an object’s velocity changes over time. The slope represents acceleration.
+
+            Real-World Application:
+            - The motion of a car during a trip can be represented by distance-time and velocity-time graphs.
+
+            Advanced Concept:
+            - The area under a velocity-time graph gives the total distance traveled. For uniformly accelerated motion, this can be calculated as \( \text{Distance} = \frac{1}{2} (u + v) t \), where \( u \) is initial velocity, \( v \) is final velocity, and \( t \) is time.
+            """,
+            "summary": "Graphs represent motion, with distance-time graphs showing speed and velocity-time graphs showing acceleration.",
+            "quiz": [
+                {
+                    "question": "What does the area under a velocity-time graph represent?",
+                    "options": [
+                        "Acceleration",
+                        "Speed",
+                        "Time",
+                        "Distance"
+                    ],
+                    "answer": 3
+                }
+            ]
+        },
+        {
+            "name": "Equations of Motion",
+            "lesson": """The equations of motion describe the relationship between velocity, acceleration, time, and displacement during uniformly accelerated motion.
+
+            Key Concepts:
+            1. **First Equation of Motion**:
+               - \( v = u + at \), where \( v \) is final velocity, \( u \) is initial velocity, \( a \) is acceleration, and \( t \) is time.
+
+            2. **Second Equation of Motion**:
+               - \( s = ut + \frac{1}{2} at^2 \), where \( s \) is displacement, \( u \) is initial velocity, \( a \) is acceleration, and \( t \) is time.
+
+            Real-World Application:
+            - These equations can be used to calculate the distance traveled by an object under constant acceleration, such as a car accelerating from rest.
+
+            Advanced Concept:
+            - The third equation of motion is \( v^2 = u^2 + 2as \), which relates velocity, acceleration, and displacement.
+            """,
+            "summary": "The equations of motion describe the relationship between velocity, acceleration, time, and displacement for uniformly accelerated motion.",
+            "quiz": [
+                {
+                    "question": "What is the second equation of motion?",
+                    "options": [
+                        "v = u + at",
+                        "s = ut + \frac{1}{2} at^2",
+                        "v^2 = u^2 + 2as",
+                        "s = ut + at"
+                    ],
+                    "answer": 1
+                }
+            ]
+        },
+    ],
+    "gravitation": [
+        {
+            "name": "Gravitation",
+            "lesson": """Gravitation is the force of attraction that objects exert on each other due to their mass. It affects all matter and plays a crucial role in phenomena like free fall, planetary motion, and tides.
+
+            Key Concepts:
+            1. **Gravity**:
+               - The force that attracts objects towards each other. Earth’s gravity keeps us grounded.
+
+            2. **Gravitational Force**:
+               - The force of attraction between two masses depends on their mass and the distance between them.
+
+            Real-World Application:
+            - Objects fall toward the ground because of Earth's gravitational pull.
+
+            Advanced Concept:
+            - Gravitational force follows the inverse-square law, meaning the force weakens with the square of the distance between objects.
+            """,
+            "summary": """Gravitation is the force of attraction between masses, influencing objects' motion, planetary orbits, and more.""",
+            "quiz": [
+                {
+                    "question": "What is the effect of gravity on objects?",
+                    "options": [
+                        "Objects repel each other.",
+                        "Objects move towards each other.",
+                        "Objects remain stationary.",
+                        "Objects move away from each other."
+                    ],
+                    "answer": 1
+                }
+            ]
+        },
+        {
+            "name": "Universal Law of Gravitation",
+            "lesson": """The Universal Law of Gravitation describes how every mass attracts every other mass in the universe with a force that is proportional to the product of their masses and inversely proportional to the square of the distance between them.
+
+            Key Concepts:
+            1. **Newton's Law of Gravitation**:
+               - The formula for gravitational force is \( F = \frac{Gm_1m_2}{r^2} \), where \( F \) is the force, \( G \) is the gravitational constant, \( m_1 \) and \( m_2 \) are the masses of two objects, and \( r \) is the distance between them.
+
+            Real-World Application:
+            - The Earth and the Moon are attracted to each other due to gravitational force.
+
+            Advanced Concept:
+            - The gravitational force decreases rapidly as the distance between two objects increases.
+            """,
+            "summary": "The Universal Law of Gravitation describes how masses attract each other with a force dependent on their masses and distance.",
+            "quiz": [
+                {
+                    "question": "What does the Universal Law of Gravitation state?",
+                    "options": [
+                        "Masses repel each other.",
+                        "Gravitational force decreases with distance.",
+                        "Gravitational force is independent of mass.",
+                        "Gravitational force is constant at all distances."
+                    ],
+                    "answer": 1
+                }
+            ]
+        },
+        {
+            "name": "Free Fall",
+            "lesson": """Free fall occurs when an object falls under the influence of gravity alone, without any resistance from air or other forces.
+
+            Key Concepts:
+            1. **Acceleration Due to Gravity**:
+               - The acceleration of an object during free fall near Earth's surface is approximately \( 9.8 \, \text{m/s}^2 \).
+            
+            Real-World Application:
+            - An object dropped from a height experiences free fall, accelerating until it hits the ground.
+
+            Advanced Concept:
+            - The time it takes for an object to fall can be calculated using the formula \( t = \sqrt{\frac{2h}{g}} \), where \( h \) is height and \( g \) is acceleration due to gravity.
+            """,
+            "summary": """In free fall, an object accelerates towards Earth due to gravity, experiencing an acceleration of approximately \( 9.8 \, \text{m/s}^2 \).""",
+            "quiz": [
+                {
+                    "question": "What is the acceleration due to gravity near Earth's surface?",
+                    "options": [
+                        "9.8 m/s²",
+                        "10 m/s²",
+                        "0 m/s²",
+                        "9.8 km/s²"
                     ],
                     "answer": 0
                 }
             ]
         },
         {
-            "name": "Measuring the Rate of Motion",
-            "lesson": """The rate of motion is measured in terms of speed and velocity.
-
+            "name": "To Calculate the Value of \( g \)",
+            "lesson": """The value of acceleration due to gravity can be calculated by measuring the time taken for an object to fall from a known height.
+            
             Key Concepts:
-            1. **Speed**:
-               - Speed is the rate at which distance is covered. It is a scalar quantity, measured in meters per second (m/s).
-
-            2. **Velocity**:
-               - Velocity is the rate of change of displacement. Unlike speed, it is a vector, having both magnitude and direction.
-
-            3. **Instantaneous Speed and Velocity**:
-               - Instantaneous speed refers to the speed at a particular moment, while instantaneous velocity also accounts for direction at that moment.
-
+            1. **Using Free Fall Formula**:
+               - By measuring the time \( t \) it takes for an object to fall from height \( h \), we can calculate \( g \) using the formula:
+                 \[
+                 g = \frac{2h}{t^2}
+                 \]
+            
             Real-World Application:
-            - Speedometers measure the instantaneous speed of vehicles. Velocity is used to describe the motion of particles in physics.
+            - Experiments to measure \( g \) help us understand Earth's gravitational pull.
 
             Advanced Concept:
-            - Calculus is often required to calculate average speed and velocity in cases of non-uniform motion.
+            - The value of \( g \) varies slightly at different locations on Earth due to altitude and geographical factors.
             """,
-            "summary": """Speed and velocity describe the rate of motion. Speed is scalar, and velocity is vectorial, including direction. Instantaneous speed and velocity can be determined at any given moment.""",
+            "summary": """The value of \( g \) can be calculated using the free fall formula, considering the time and height of the fall.""",
             "quiz": [
                 {
-                    "question": "Which quantity includes direction?",
+                    "question": "How do you calculate the acceleration due to gravity?",
                     "options": [
-                        "Speed",
-                        "Time",
-                        "Velocity",
-                        "Distance"
+                        "By measuring time and height during free fall.",
+                        "By measuring weight and mass.",
+                        "By calculating velocity.",
+                        "By using the Universal Law of Gravitation."
                     ],
-                    "answer": 2
+                    "answer": 0
                 }
             ]
         },
         {
-            "name": "Speed with Direction",
-            "lesson": """Speed with direction is referred to as velocity. Velocity has both magnitude (speed) and direction, which distinguishes it from speed.
-
+            "name": "Mass and Weight",
+            "lesson": """Mass is the amount of matter in an object, while weight is the force exerted on an object due to gravity. The weight of an object depends on the gravitational pull at its location.
+            
             Key Concepts:
-            1. **Velocity**:
-               - Velocity represents both the rate of motion and the direction of the object’s motion.
-
-            2. **Scalar vs. Vector**:
-               - Speed is a scalar and tells how fast an object is moving, while velocity is a vector, also indicating the direction of motion.
-
-            3. **Direction of Motion**:
-               - The direction is critical in determining the velocity. For example, an object moving northward at 10 m/s has a velocity of 10 m/s north.
+            1. **Mass**:
+               - Mass is a scalar quantity, measured in kilograms (kg), and does not change with location.
+            
+            2. **Weight**:
+               - Weight is a force calculated as \( W = mg \), where \( W \) is weight, \( m \) is mass, and \( g \) is the acceleration due to gravity.
 
             Real-World Application:
-            - Airplanes and ships often specify their velocities, including direction, to avoid confusion with speed.
+            - A person's mass remains the same, but their weight changes on the Moon due to lower gravity.
 
             Advanced Concept:
-            - The velocity vector can be broken down into components for motion in multiple directions.
+            - Weight varies depending on the planet or celestial body, as gravity differs.
             """,
-            "summary": """Speed with direction is velocity. Velocity is a vector that describes both the magnitude of motion (speed) and its direction, unlike speed, which is scalar.""",
+            "summary": """Mass is the amount of matter, and weight is the force due to gravity. The formula for weight is \( W = mg \).""",
             "quiz": [
                 {
-                    "question": "What distinguishes velocity from speed?",
+                    "question": "What is the formula for weight?",
                     "options": [
-                        "Velocity is always greater than speed.",
-                        "Velocity includes direction, while speed does not.",
-                        "Velocity measures the total distance covered, while speed measures displacement.",
-                        "Velocity is a scalar, while speed is a vector."
+                        "W = m × g",
+                        "W = m ÷ g",
+                        "W = g ÷ m",
+                        "W = m + g"
                     ],
-                    "answer": 1
-                }
-            ]
-        }
-    ],
-    "force_and_laws_of_motion": [
-        {
-            "name": "Balanced and Unbalanced Forces",
-            "lesson": """Forces are vectors that cause changes in motion. 
-
-            Key Concepts:
-            1. **Balanced Forces**:
-               - Forces are balanced when they are equal in magnitude but opposite in direction. This results in no change in motion.
-
-            2. **Unbalanced Forces**:
-               - Unbalanced forces cause acceleration or deceleration, leading to a change in motion.
-
-            3. **Force and Motion**:
-               - The net force acting on an object determines its motion according to Newton’s laws of motion.
-
-            Real-World Application:
-            - A book resting on a table experiences balanced forces, while a car accelerating involves unbalanced forces.
-
-            Advanced Concept:
-            - The net force on an object can be calculated using vector addition when multiple forces are acting on it.
-            """,
-            "summary": """Balanced forces do not change an object's motion, while unbalanced forces cause acceleration or deceleration, affecting the object's state of motion.""",
-            "quiz": [
-                {
-                    "question": "Which of the following causes an object to accelerate?",
-                    "options": [
-                        "Balanced forces",
-                        "Unbalanced forces",
-                        "Equal forces",
-                        "Opposite forces"
-                    ],
-                    "answer": 1
-                }
-            ]
-        },
-        {
-            "name": "First Law of Motion",
-            "lesson": """Newton's First Law states that an object at rest will remain at rest, and an object in motion will continue in motion unless acted upon by an unbalanced external force.
-
-            Key Concepts:
-            1. **Inertia**:
-               - The tendency of objects to resist changes in motion. More massive objects have greater inertia.
-
-            2. **Constant Velocity**:
-               - An object moving with constant velocity will continue moving unless acted on by an external force, like friction or gravity.
-
-            Real-World Application:
-            - A passenger in a car feels a jolt when the car suddenly stops due to inertia.
-
-            Advanced Concept:
-            - The concept of inertia can be applied to space exploration, where spacecraft can continue their motion without external forces acting on them in the vacuum of space.
-            """,
-            "summary": """Newton’s First Law, the law of inertia, states that objects will continue their state of motion unless acted upon by an external force.""",
-            "quiz": [
-                {
-                    "question": "What does Newton's First Law describe?",
-                    "options": [
-                        "The relationship between force and motion",
-                        "The effect of unbalanced forces",
-                        "The tendency of objects to resist changes in motion",
-                        "The behavior of objects at high speeds"
-                    ],
-                    "answer": 2
-                }
-            ]
-        }
-    ],
-    "gravitation": [
-        {
-            "name": "Gravitation",
-            "lesson": """Gravitation is the force that attracts objects toward each other. It is responsible for keeping planets in orbit around the Sun.
-
-            Key Concepts:
-            1. **Universal Law of Gravitation**:
-               - Every particle in the universe attracts every other particle with a force that is directly proportional to the product of their masses and inversely proportional to the square of the distance between them.
-
-            2. **Free Fall**:
-               - An object in free fall experiences only the force of gravity, accelerating at 9.8 m/s² (on Earth).
-
-            3. **Gravitational Force**:
-               - The force that pulls objects toward the center of the Earth.
-
-            Real-World Application:
-            - The weight of an object, or the force it exerts due to gravity, is determined by its mass and the gravitational force of Earth.
-
-            Advanced Concept:
-            - Gravitational potential energy is related to the position of an object in a gravitational field.
-            """,
-            "summary": """Gravitation is a force of attraction between masses. It is described by the universal law of gravitation, influencing the motion of objects in free fall.""",
-            "quiz": [
-                {
-                    "question": "What does the universal law of gravitation state?",
-                    "options": [
-                        "The force of gravity is constant everywhere.",
-                        "Gravity depends only on mass.",
-                        "Gravity is stronger the farther apart two objects are.",
-                        "Every mass attracts every other mass with a force inversely proportional to the square of the distance."
-                    ],
-                    "answer": 3
+                    "answer": 0
                 }
             ]
         }
     ]
 }
-
 # Flask app and routes remain the same
 
     def get_all_topics(self):
