@@ -20,436 +20,304 @@ class PhysicsLearningBot:
             behaviour="Innovative and creative physics teacher specializing in gravitation"
         )
         
-        self.topics = {
-            "basic_gravitation": [
+        self.topics = { 
+    "motion": [
+        {
+            "name": "Describing Motion",
+            "lesson": """Motion is defined as the change in position of an object with respect to time. It can be described in terms of displacement, velocity, and acceleration. The study of motion is known as kinematics, and it helps us understand how objects move in space. 
+
+            Key Concepts:
+            1. **Types of Motion**:
+               - **Translatory Motion**: Movement along a straight or curved path, such as a car moving on a road.
+               - **Rotational Motion**: Movement around an axis, such as the Earth's rotation.
+               - **Oscillatory Motion**: Repetitive back-and-forth motion, like a pendulum.
+
+            2. **Reference Frame**:
+               - A reference frame is essential for describing motion. It provides a point from which measurements of position, velocity, and acceleration can be made.
+
+            3. **Scalars and Vectors**:
+               - **Distance**: The total path traveled, a scalar quantity.
+               - **Displacement**: The shortest distance between the starting and ending point, with direction, a vector quantity.
+
+            4. **Relative Motion**:
+               - The motion of an object depends on the observer’s reference frame. Different frames of reference can observe different velocities for the same object.
+
+            Real-World Application:
+            - Motion of planets around the Sun and the movement of vehicles in traffic.
+
+            Advanced Concept:
+            - Analyzing non-uniform motion through calculus allows us to study the relationship between position and velocity over time.
+            """,
+            "summary": """Motion is a change in position over time. It can be described as translatory, rotational, or oscillatory motion and is studied in relation to reference frames, distance, and displacement.""",
+            "quiz": [
                 {
-                    "name": "Newton's Law of Universal Gravitation",
-                    "lesson": """Newton's Law of Universal Gravitation is a fundamental principle that describes the gravitational force between all masses in the universe.
-
-                    Key Concepts:
-                    1. The Universal Gravitational Constant (G):
-                       - G = 6.674 × 10⁻¹¹ N(m/kg)²
-                       - This constant is the same throughout the universe
-                       - Determines the strength of gravitational force
-
-                    2. Key Equation:
-                       F = G(m₁m₂/r²)
-                       where:
-                       - F is the gravitational force
-                       - m₁ and m₂ are the masses of the objects
-                       - r is the distance between their centers
-
-                    3. Important Facts:
-                       - Force decreases with square of distance
-                       - Force is always attractive
-                       - Applies to all objects with mass
-
-                    Real-world Applications:
-                    - Planetary orbits
-                    - Satellite motion
-                    - Tidal forces
-                    """,
-                    "summary": "Newton's Law explains how objects with mass attract each other, with strength depending on their masses and distance.",
-                    "quiz": [
-                        {
-                            "question": "What does Newton's Law of Universal Gravitation describe?",
-                            "options": [
-                                "The motion of planets",
-                                "The gravitational force between two masses",
-                                "The speed of light",
-                                "The shape of the Earth"
-                            ],
-                            "answer": 1
-                        },
-                        {
-                            "question": "What happens to gravitational force as distance increases?",
-                            "options": [
-                                "It increases",
-                                "It decreases",
-                                "It remains constant",
-                                "It becomes zero"
-                            ],
-                            "answer": 1
-                        },
-                        {
-                            "question": "What is the value of the Universal Gravitational Constant G?",
-                            "options": [
-                                "6.674 × 10⁻¹¹ N(m/kg)²",
-                                "3.14 × 10⁻⁸ N(m/kg)²",
-                                "9.81 m/s²",
-                                "1.0 × 10⁻⁶ N(m/kg)²"
-                            ],
-                            "answer": 0
-                        },
-                        {
-                            "question": "Is gravitational force always...",
-                            "options": [
-                                "Repulsive",
-                                "Attractive",
-                                "Zero",
-                                "Variable"
-                            ],
-                            "answer": 1
-                        }
-                    ]
+                    "question": "Which type of motion is an example of movement around an axis?",
+                    "options": [
+                        "Translatory motion",
+                        "Rotational motion",
+                        "Oscillatory motion",
+                        "Linear motion"
+                    ],
+                    "answer": 1
                 },
-            ],
-            "gravitational_fields": [
                 {
-                    "name": "Gravitational Field Strength",
-                    "lesson": """Gravitational field strength (g) represents the force per unit mass at any point in a gravitational field.
+                    "question": "What is the key difference between distance and displacement?",
+                    "options": [
+                        "Distance is a scalar, and displacement is a vector.",
+                        "Displacement measures total path length, distance considers direction.",
+                        "Distance can be negative, displacement cannot.",
+                        "Displacement is the total distance traveled along the path."
+                    ],
+                    "answer": 0
+                }
+            ]
+        },
+        {
+            "name": "Motion Along a Straight Line",
+            "lesson": """This topic covers the motion of objects moving along a straight line, either with constant or changing velocity.
 
-                    Key Concepts:
-                    1. Field Strength:
-                       - g = F/m = GM/r²
-                       - Measured in N/kg or m/s²
-                       - Varies with altitude
+            Key Concepts:
+            1. **Uniform Motion**:
+               - An object moves with constant velocity, covering equal distances in equal intervals of time.
 
-                    2. Gravitational Potential Energy:
-                       - GPE = mgh (near Earth's surface)
-                       - GPE = -GMm/r (general form)
-                       - Zero at infinity
+            2. **Non-Uniform Motion**:
+               - An object’s velocity is changing. This can involve acceleration or deceleration, such as a car speeding up or slowing down.
 
-                    3. Important Facts:
-                       - g = 9.81 m/s² at Earth's surface
-                       - Field follows inverse square law
-                       - Field lines point toward mass center
+            3. **Speed and Velocity**:
+               - **Speed**: The total distance covered divided by the total time taken. It is a scalar quantity.
+               - **Velocity**: The displacement divided by the total time taken. It is a vector quantity and includes both magnitude and direction.
 
-                    Applications:
-                    - Space mission planning
-                    - Satellite positioning
-                    - Weight variations with altitude
-                    """,
-                    "summary": "Gravitational field strength measures the force experienced by a mass in a gravitational field, affected by distance from the mass causing the field.",
-                    "quiz": [
-                        {
-                            "question": "What is the formula for gravitational field strength?",
-                            "options": [
-                                "F = ma",
-                                "E = mc²",
-                                "g = F/m = GM/r²",
-                                "v = d/t"
-                            ],
-                            "answer": 2
-                        },
-                        {
-                            "question": "What is the value of g at Earth's surface?",
-                            "options": [
-                                "9.81 m/s²",
-                                "10 m/s²",
-                                "8.67 m/s²",
-                                "5.0 m/s²"
-                            ],
-                            "answer": 0
-                        },
-                        {
-                            "question": "Where is gravitational potential energy zero?",
-                            "options": [
-                                "At Earth's surface",
-                                "At the center of a planet",
-                                "At infinity",
-                                "At sea level"
-                            ],
-                            "answer": 2
-                        },
-                        {
-                            "question": "How does gravitational field strength change with altitude?",
-                            "options": [
-                                "Remains constant",
-                                "Increases linearly",
-                                "Decreases with distance",
-                                "Becomes zero"
-                            ],
-                            "answer": 2
-                        }
-                    ]
-                },
-            ],
-            "orbital_mechanics": [
+            4. **Acceleration**:
+               - Acceleration occurs when there is a change in velocity over time, either an increase (acceleration) or a decrease (deceleration) in speed.
+
+            Real-World Application:
+            - Vehicles moving along straight roads, with varying speeds, can be analyzed using speed, velocity, and acceleration.
+
+            Advanced Concept:
+            - Non-uniform motion often requires calculus to compute displacement and velocity when acceleration is not constant.
+            """,
+            "summary": """Motion along a straight line can either be uniform (constant velocity) or non-uniform (changing velocity). Concepts such as speed, velocity, and acceleration are central to describing this motion.""",
+            "quiz": [
                 {
-                    "name": "Kepler's Laws of Planetary Motion",
-                    "lesson": """Kepler's Laws describe the motion of planets and satellites in orbit around a central body.
+                    "question": "Which of the following is an example of non-uniform motion?",
+                    "options": [
+                        "A car moving at a constant speed",
+                        "A car speeding up",
+                        "A rock falling freely",
+                        "A plane cruising at constant altitude"
+                    ],
+                    "answer": 1
+                }
+            ]
+        },
+        {
+            "name": "Uniform Motion and Non-Uniform Motion",
+            "lesson": """Motion is categorized into uniform and non-uniform types, based on the behavior of velocity.
 
-                    Key Laws:
-                    1. First Law - Orbital Shape:
-                       - Orbits are elliptical
-                       - Central body at one focus
-                       - Special case: circular orbits
+            Key Concepts:
+            1. **Uniform Motion**:
+               - The object’s velocity remains constant throughout its motion.
 
-                    2. Second Law - Equal Areas:
-                       - Line joining planet to Sun sweeps equal areas in equal times
-                       - Conservation of angular momentum
-                       - Planets move faster when closer
+            2. **Non-Uniform Motion**:
+               - The object’s velocity changes over time. It may involve varying acceleration or deceleration.
 
-                    3. Third Law - Orbital Periods:
-                       - T² ∝ r³
-                       - T² = (4π²/GM)r³
-                       - Applies to all orbiting bodies
+            3. **Graphical Representation**:
+               - In uniform motion, the distance-time graph is a straight line, indicating constant speed.
+               - In non-uniform motion, the graph is a curve, indicating changing velocity.
 
-                    Applications:
-                    - Satellite deployment
-                    - Interplanetary missions
-                    - Space station orbits
-                    """,
-                    "summary": "Kepler's laws describe how planets move in elliptical orbits, with varying speeds based on their distance from the Sun.",
-                    "quiz": [
-                        {
-                            "question": "What shape are planetary orbits according to Kepler's First Law?",
-                            "options": [
-                                "Circular",
-                                "Elliptical",
-                                "Parabolic",
-                                "Hyperbolic"
-                            ],
-                            "answer": 1
-                        },
-                        {
-                            "question": "What does Kepler's Second Law state?",
-                            "options": [
-                                "Orbits are circular",
-                                "Equal area in equal time",
-                                "T² ∝ r³",
-                                "Gravitational force is constant"
-                            ],
-                            "answer": 1
-                        },
-                        {
-                            "question": "Where is the central body located in an orbit?",
-                            "options": [
-                                "At the center of the orbit",
-                                "At one focus of the ellipse",
-                                "At the edge of the orbit",
-                                "Randomly positioned"
-                            ],
-                            "answer": 1
-                        },
-                        {
-                            "question": "What happens to a planet's speed as it gets closer to the central body?",
-                            "options": [
-                                "Remains constant",
-                                "Decreases",
-                                "Increases",
-                                "Becomes zero"
-                            ],
-                            "answer": 2
-                        }
-                    ]
-                },
-            ],
-            "gravitational_effects": [
+            Real-World Application:
+            - Uniform motion is seen in a car moving at a steady pace, while non-uniform motion is common when a vehicle starts and stops.
+
+            Advanced Concept:
+            - The use of derivatives and integrals can describe the changes in velocity and position in non-uniform motion.
+            """,
+            "summary": """Uniform motion occurs at constant velocity, while non-uniform motion involves changing velocity. Graphs help to visualize these types of motion and calculate various quantities.""",
+            "quiz": [
                 {
-                    "name": "Tidal Forces and Effects",
-                    "lesson": """Tidal forces arise from differential gravitational forces across an extended body.
+                    "question": "What does a distance-time graph for uniform motion look like?",
+                    "options": [
+                        "A straight, sloped line",
+                        "A curved line",
+                        "A straight horizontal line",
+                        "A zigzag line"
+                    ],
+                    "answer": 0
+                }
+            ]
+        },
+        {
+            "name": "Measuring the Rate of Motion",
+            "lesson": """The rate of motion is measured in terms of speed and velocity.
 
-                    Key Concepts:
-                    1. Tidal Bulge:
-                       - Caused by gravity gradient
-                       - Two bulges: facing and opposite
-                       - Earth-Moon interaction
+            Key Concepts:
+            1. **Speed**:
+               - Speed is the rate at which distance is covered. It is a scalar quantity, measured in meters per second (m/s).
 
-                    2. Tidal Effects:
-                       - Ocean tides
-                       - Tidal locking
-                       - Orbital energy transfer
+            2. **Velocity**:
+               - Velocity is the rate of change of displacement. Unlike speed, it is a vector, having both magnitude and direction.
 
-                    3. Important Facts:
-                       - Varies with cube of distance
-                       - Affects solid bodies too
-                       - Causes tidal heating
+            3. **Instantaneous Speed and Velocity**:
+               - Instantaneous speed refers to the speed at a particular moment, while instantaneous velocity also accounts for direction at that moment.
 
-                    Applications:
-                    - Ocean navigation
-                    - Moon's rotation
-                    - Planetary geology
-                    """,
-                    "summary": "Tidal forces are caused by the varying gravitational pull from celestial bodies, leading to phenomena like ocean tides.",
-                    "quiz": [
-                        {
-                            "question": "What causes tidal bulges on Earth?",
-                            "options": [
-                                "Wind",
-                                "Moon's gravitational pull",
-                                "Sun's radiation",
-                                "Earth's rotation"
-                            ],
-                            "answer": 1
-                        },
-                        {
-                            "question": "How do tidal forces affect solid bodies?",
-                            "options": [
-                                "No effect",
-                                "Cracking",
-                                "Tidal heating",
-                                "Shape change"
-                            ],
-                            "answer": 2
-                        },
-                        {
-                            "question": "How do tidal forces depend on distance?",
-                            "options": [
-                                "Linearly",
-                                "Exponentially",
-                                "With cube of distance",
-                                "Inversely"
-                            ],
-                            "answer": 2
-                        },
-                        {
-                            "question": "How many tidal bulges does Earth have?",
-                            "options": [
-                                "One",
-                                "Two",
-                                "Three",
-                                "Four"
-                            ],
-                            "answer": 1
-                        }
-                    ]
-                },
-            ],
-            "advanced_gravitation": [
+            Real-World Application:
+            - Speedometers measure the instantaneous speed of vehicles. Velocity is used to describe the motion of particles in physics.
+
+            Advanced Concept:
+            - Calculus is often required to calculate average speed and velocity in cases of non-uniform motion.
+            """,
+            "summary": """Speed and velocity describe the rate of motion. Speed is scalar, and velocity is vectorial, including direction. Instantaneous speed and velocity can be determined at any given moment.""",
+            "quiz": [
                 {
-                    "name": "Gravitational Waves",
-                    "lesson": """Gravitational waves are ripples in spacetime caused by some of the most violent and energetic processes in the Universe.
+                    "question": "Which quantity includes direction?",
+                    "options": [
+                        "Speed",
+                        "Time",
+                        "Velocity",
+                        "Distance"
+                    ],
+                    "answer": 2
+                }
+            ]
+        },
+        {
+            "name": "Speed with Direction",
+            "lesson": """Speed with direction is referred to as velocity. Velocity has both magnitude (speed) and direction, which distinguishes it from speed.
 
-                    Key Concepts:
-                    1. Generation:
-                       - Produced by accelerating masses
-                       - Notable sources: merging black holes, neutron stars
+            Key Concepts:
+            1. **Velocity**:
+               - Velocity represents both the rate of motion and the direction of the object’s motion.
 
-                    2. Detection:
-                       - LIGO and Virgo observatories
-                       - Measure tiny changes in distance
+            2. **Scalar vs. Vector**:
+               - Speed is a scalar and tells how fast an object is moving, while velocity is a vector, also indicating the direction of motion.
 
-                    3. Importance:
-                       - New way to observe the universe
-                       - Provides information about black hole mergers
+            3. **Direction of Motion**:
+               - The direction is critical in determining the velocity. For example, an object moving northward at 10 m/s has a velocity of 10 m/s north.
 
-                    Real-world Example:
-                    - First detected in 2015 by LIGO, confirming Einstein's prediction
-                    """,
-                    "summary": "Gravitational waves are generated by massive objects moving in space, detectable by observatories like LIGO, revealing information about cosmic events.",
-                    "quiz": [
-                        {
-                            "question": "What causes gravitational waves?",
-                            "options": [
-                                "Static objects",
-                                "Accelerating masses",
-                                "Light from stars",
-                                "Magnetic fields"
-                            ],
-                            "answer": 1
-                        },
-                        {
-                            "question": "Which observatory was the first to detect gravitational waves?",
-                            "options": [
-                                "Hubble",
-                                "LIGO",
-                                "James Webb",
-                                "Chandra"
-                            ],
-                            "answer": 1
-                        },
-                        {
-                            "question": "What do gravitational wave observatories measure?",
-                            "options": [
-                                "Star brightness",
-                                "Radio signals",
-                                "Tiny changes in distance",
-                                "Magnetic field strength"
-                            ],
-                            "answer": 2
-                        },
-                        {
-                            "question": "When were gravitational waves first detected?",
-                            "options": [
-                                "2010",
-                                "2012",
-                                "2015",
-                                "2018"
-                            ],
-                            "answer": 2
-                        }
-                    ]
-                },
-            ],
-            "comprehensive_gravitation": [
+            Real-World Application:
+            - Airplanes and ships often specify their velocities, including direction, to avoid confusion with speed.
+
+            Advanced Concept:
+            - The velocity vector can be broken down into components for motion in multiple directions.
+            """,
+            "summary": """Speed with direction is velocity. Velocity is a vector that describes both the magnitude of motion (speed) and its direction, unlike speed, which is scalar.""",
+            "quiz": [
                 {
-                    "name": "Gravitational Physics Overview",
-                    "lesson": """A comprehensive summary of gravitational physics, integrating key concepts from previous topics.
-
-                    1. Fundamental Principles:
-                       - Gravity is a fundamental force of nature
-                       - Described by Newton's and Einstein's theories
-                       - Acts between all massive objects
-
-                    2. Key Theories and Observations:
-                       - Newton's Law of Universal Gravitation
-                       - Einstein's General Relativity
-                       - Gravitational waves
-                       - Orbital mechanics
-
-                    3. Practical Applications:
-                       - Space exploration
-                       - Satellite technology
-                       - Understanding cosmic phenomena
-                       - Planetary and stellar evolution
-
-                    4. Interconnected Concepts:
-                       - Field strength
-                       - Potential energy
-                       - Tidal forces
-                       - Orbital dynamics
-                    """,
-                    "summary": "Gravitational physics is a complex field studying how massive objects interact through the fundamental gravitational force, revealing the intricate mechanics of the universe.",
-                    "quiz": [
-                        {
-                            "question": "Which two major theories primarily describe gravitational interactions?",
-                            "options": [
-                                "Quantum Mechanics and Special Relativity",
-                                "Thermodynamics and Electromagnetism",
-                                "Newton's Law and Einstein's General Relativity",
-                                "Classical Mechanics and Quantum Field Theory"
-                            ],
-                            "answer": 2
-                        },
-                        {
-                            "question": "What are the practical applications of gravitational physics?",
-                            "options": [
-                                "Cooking and agriculture",
-                                "Space exploration and satellite technology",
-                                "Music production",
-                                "Fashion design"
-                            ],
-                            "answer": 1
-                        },
-                        {
-                            "question": "How many fundamental forces does gravity interact with?",
-                            "options": [
-                                "1",
-                                "2",
-                                "3",
-                                "4"
-                            ],
-                            "answer": 3
-                        },
-                        {
-                            "question": "What recent astronomical discovery confirmed Einstein's predictions?",
-                            "options": [
-                                "Dark matter",
-                                "Exoplanets",
-                                "Gravitational waves",
-                                "Black hole imaging"
-                            ],
-                            "answer": 2
-                        }
-                    ]
+                    "question": "What distinguishes velocity from speed?",
+                    "options": [
+                        "Velocity is always greater than speed.",
+                        "Velocity includes direction, while speed does not.",
+                        "Velocity measures the total distance covered, while speed measures displacement.",
+                        "Velocity is a scalar, while speed is a vector."
+                    ],
+                    "answer": 1
                 }
             ]
         }
+    ],
+    "force_and_laws_of_motion": [
+        {
+            "name": "Balanced and Unbalanced Forces",
+            "lesson": """Forces are vectors that cause changes in motion. 
 
-    # Rest of the class remains the same as in the original implementation
-    # (get_all_topics, get_topic_by_name, get_lesson, get_summary, get_quiz, get_challenge, get_ai_response methods)
+            Key Concepts:
+            1. **Balanced Forces**:
+               - Forces are balanced when they are equal in magnitude but opposite in direction. This results in no change in motion.
+
+            2. **Unbalanced Forces**:
+               - Unbalanced forces cause acceleration or deceleration, leading to a change in motion.
+
+            3. **Force and Motion**:
+               - The net force acting on an object determines its motion according to Newton’s laws of motion.
+
+            Real-World Application:
+            - A book resting on a table experiences balanced forces, while a car accelerating involves unbalanced forces.
+
+            Advanced Concept:
+            - The net force on an object can be calculated using vector addition when multiple forces are acting on it.
+            """,
+            "summary": """Balanced forces do not change an object's motion, while unbalanced forces cause acceleration or deceleration, affecting the object's state of motion.""",
+            "quiz": [
+                {
+                    "question": "Which of the following causes an object to accelerate?",
+                    "options": [
+                        "Balanced forces",
+                        "Unbalanced forces",
+                        "Equal forces",
+                        "Opposite forces"
+                    ],
+                    "answer": 1
+                }
+            ]
+        },
+        {
+            "name": "First Law of Motion",
+            "lesson": """Newton's First Law states that an object at rest will remain at rest, and an object in motion will continue in motion unless acted upon by an unbalanced external force.
+
+            Key Concepts:
+            1. **Inertia**:
+               - The tendency of objects to resist changes in motion. More massive objects have greater inertia.
+
+            2. **Constant Velocity**:
+               - An object moving with constant velocity will continue moving unless acted on by an external force, like friction or gravity.
+
+            Real-World Application:
+            - A passenger in a car feels a jolt when the car suddenly stops due to inertia.
+
+            Advanced Concept:
+            - The concept of inertia can be applied to space exploration, where spacecraft can continue their motion without external forces acting on them in the vacuum of space.
+            """,
+            "summary": """Newton’s First Law, the law of inertia, states that objects will continue their state of motion unless acted upon by an external force.""",
+            "quiz": [
+                {
+                    "question": "What does Newton's First Law describe?",
+                    "options": [
+                        "The relationship between force and motion",
+                        "The effect of unbalanced forces",
+                        "The tendency of objects to resist changes in motion",
+                        "The behavior of objects at high speeds"
+                    ],
+                    "answer": 2
+                }
+            ]
+        }
+    ],
+    "gravitation": [
+        {
+            "name": "Gravitation",
+            "lesson": """Gravitation is the force that attracts objects toward each other. It is responsible for keeping planets in orbit around the Sun.
+
+            Key Concepts:
+            1. **Universal Law of Gravitation**:
+               - Every particle in the universe attracts every other particle with a force that is directly proportional to the product of their masses and inversely proportional to the square of the distance between them.
+
+            2. **Free Fall**:
+               - An object in free fall experiences only the force of gravity, accelerating at 9.8 m/s² (on Earth).
+
+            3. **Gravitational Force**:
+               - The force that pulls objects toward the center of the Earth.
+
+            Real-World Application:
+            - The weight of an object, or the force it exerts due to gravity, is determined by its mass and the gravitational force of Earth.
+
+            Advanced Concept:
+            - Gravitational potential energy is related to the position of an object in a gravitational field.
+            """,
+            "summary": """Gravitation is a force of attraction between masses. It is described by the universal law of gravitation, influencing the motion of objects in free fall.""",
+            "quiz": [
+                {
+                    "question": "What does the universal law of gravitation state?",
+                    "options": [
+                        "The force of gravity is constant everywhere.",
+                        "Gravity depends only on mass.",
+                        "Gravity is stronger the farther apart two objects are.",
+                        "Every mass attracts every other mass with a force inversely proportional to the square of the distance."
+                    ],
+                    "answer": 3
+                }
+            ]
+        }
+    ]
+}
 
 # Flask app and routes remain the same
 
